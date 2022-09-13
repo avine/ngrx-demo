@@ -4,5 +4,5 @@ import { TodoListItem } from './todo-list.types';
 
 export const addTodoListItem = createAction(
   '[Todo List] Add',
-  props<TodoListItem>()
+  props<Pick<TodoListItem, 'content'>>()
 );

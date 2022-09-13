@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { TodoListComponent } from './todo-list/todo-list.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: TodoListComponent,
+    pathMatch: 'full',
+    component: HomeComponent,
+  },
+  {
+    path: 'todo-list',
+    loadChildren: () =>
+      import('./todo-list/todo-list.module').then((mod) => mod.TodoListModule),
   },
 ];
 

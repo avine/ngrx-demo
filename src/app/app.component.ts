@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { addTodoListItem } from './todo-list/todo-list.actions';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,8 +7,4 @@ import { addTodoListItem } from './todo-list/todo-list.actions';
 })
 export class AppComponent {
   title = 'ngrx-demo';
-
-  constructor() {
-    console.log(addTodoListItem({ content: 'Hello' }));
-  }
 }
