@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { AppState } from '../app.reducer';
-import { addTodoListItem } from './todo-list.actions';
+import { loadTodoList } from './todo-list.actions';
 import { selectTodoList } from './todo-list.selectors';
 
 @Component({
@@ -10,12 +10,14 @@ import { selectTodoList } from './todo-list.selectors';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss'],
 })
-export class TodoListComponent {
+export class TodoListComponent implements OnInit {
   todoList$ = this.store.select(selectTodoList);
 
   constructor(private store: Store<AppState>) {}
 
-  add() {
-    this.store.dispatch(addTodoListItem({ content: 'Hello' }));
+  ngOnInit(): void {
+    this.store.dispatch(loadTodoList());
   }
+
+  add() {}
 }

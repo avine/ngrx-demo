@@ -1,4 +1,4 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 
 import * as TodoListActions from './todo-list.actions';
 import { TodoListItem } from './todo-list.types';
@@ -14,8 +14,12 @@ const initialState: TodoListState = {
 
 export const todoListReducer = createReducer(
   initialState,
-  on(TodoListActions.addTodoListItem, ({ items }, { content }) => ({
-    items: [...items, { id: getId(), content, done: false }],
+  on(TodoListActions.addTodoListItem, ({ items }, { title }) => ({
+    items: [...items, { id: getId(), title, completed: false }],
+  })),
+  on(TodoListActions.loadTodoListSucceeded, (state, { items }) => ({
+    ...state,
+    items,
   }))
 );
 
